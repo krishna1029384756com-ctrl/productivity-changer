@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <h1>⚡ Productivity</h1>
+    <button id="openOptions" title="Settings">⚙️</button>
+  </header>
+
+  <!-- Pomodoro -->
+  <section class="card">
+    <div class="timer" id="timer">25:00</div>
+    <div class="row">
+      <button id="startTimer">Start</button>
+      <button id="resetTimer">Reset</button>
+    </div>
+    <small id="timerStatus">Focus session ready</small>
+  </section>
+
+  <!-- To-Do -->
+  <section class="card">
+    <h2>Today's Tasks</h2>
+    <div class="row">
+      <input id="taskInput" placeholder="Add a task..." />
+      <button id="addTask">+</button>
+    </div>
+    <ul id="taskList"></ul>
+  </section>
+
+  <!-- Quick Notes -->
+  <section class="card">
+    <h2>Quick Note</h2>
+    <textarea id="notes" placeholder="Write something..."></textarea>
+  </section>
+
+  <!-- Tab Tools -->
+  <section class="card">
+    <h2>Tab Tools</h2>
+    <div class="row">
+      <button id="closeDupes">Close Duplicates</button>
+      <button id="toggleDark">Dark Mode</button>
+    </div>
+  </section>
+</body>
+<script src="popup.js"></script>
+</html>
