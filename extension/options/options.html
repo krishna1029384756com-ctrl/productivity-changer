@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Productivity Settings</title>
+  <style>
+    body { font-family: system-ui; background: #1e1e2e; color: #e0e0e0;
+           padding: 24px; max-width: 500px; margin: auto; }
+    h1 { color: #7c5cff; }
+    input { padding: 8px; width: 70%; border-radius: 6px;
+            border: 1px solid #3a3a4e; background: #2a2a3e; color: #fff; }
+    button { padding: 8px 14px; border: none; border-radius: 6px;
+             background: #7c5cff; color: #fff; cursor: pointer; }
+    ul { list-style: none; padding: 0; }
+    li { padding: 8px; background: #2a2a3e; margin: 4px 0;
+         border-radius: 6px; display: flex; justify-content: space-between; }
+    li button { background: #ff6b6b; padding: 4px 10px; }
+  </style>
+</head>
+<body>
+  <h1>Blocked Sites</h1>
+  <p>Enter a domain (e.g. <code>youtube.com</code>):</p>
+  <input id="siteInput" placeholder="example.com">
+  <button id="addSite">Add</button>
+  <ul id="siteList"></ul>
+  <script src="options.js"></script>
+</body>
+</html>
