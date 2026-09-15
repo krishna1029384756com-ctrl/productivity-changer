@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "Productivity Violet",
+  "version": "1.0",
+  "description": "Deep violet theme matching Productivity Changer extension",
+  "theme": {
+    "colors": {
+      "frame": [15, 15, 23],
+      "frame_inactive": [22, 22, 31],
+      "toolbar": [22, 22, 31],
+      "tab_text": [245, 245, 250],
+      "tab_background_text": [165, 165, 184],
+      "bookmark_text": [200, 200, 220],
+      "toolbar_text": [245, 245, 250],
+      "toolbar_button_icon": [245, 245, 250],
+      "omnibox_background": [30, 30, 42],
+      "omnibox_text": [245, 245, 250],
+      "ntp_background": [15, 15, 23],
+      "ntp_text": [245, 245, 250],
+      "ntp_link": [124, 92, 255],
+      "button_background": [38, 38, 51]
+    },
+    "properties": {
+      "ntp_logo_alternate": 1
+    },
+    "tints": {
+      "buttons": [-1, -1, -1]
+    }
+  }
+}
