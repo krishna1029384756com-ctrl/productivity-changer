@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../styles/theme.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="brand">
+      <span class="brand-icon">⚡</span>
+      <span class="brand-name">Productivity</span>
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn" id="themeToggle" title="Toggle theme">🌙</button>
+      <button class="icon-btn" id="openOptions" title="Settings">⚙️</button>
+    </div>
+  </header>
+
+  <!-- Pomodoro -->
+  <section class="card timer-card">
+    <div class="timer-ring">
+      <svg viewBox="0 0 120 120">
+        <circle class="ring-bg" cx="60" cy="60" r="52"/>
+        <circle class="ring-progress" cx="60" cy="60" r="52" id="ringProgress"/>
+      </svg>
+      <div class="timer-content">
+        <div class="timer-time" id="timer">25:00</div>
+        <div class="timer-label" id="timerStatus">Focus</div>
+      </div>
+    </div>
+    <div class="timer-controls">
+      <button class="btn btn-primary" id="startTimer">▶ Start</button>
+      <button class="btn btn-ghost" id="resetTimer">↻</button>
+    </div>
+  </section>
+
+  <!-- Tasks -->
+  <section class="card">
+    <div class="card-header">
+      <h2>✦ Today's Tasks</h2>
+      <span class="badge" id="taskCount">0/0</span>
+    </div>
+    <ul class="task-list" id="taskList"></ul>
+    <div class="input-group">
+      <input id="taskInput" placeholder="Add a task..." autocomplete="off">
+      <button class="btn btn-icon-primary" id="addTask">+</button>
+    </div>
+  </section>
+
+  <!-- Notes -->
+  <section class="card">
+    <div class="card-header">
+      <h2>✎ Quick Note</h2>
+      <span class="note-status" id="noteStatus"></span>
+    </div>
+    <textarea id="notes" placeholder="Jot something down..."></textarea>
+  </section>
+
+  <!-- Quick Actions -->
+  <section class="card actions-card">
+    <div class="card-header"><h2>⚡ Quick Actions</h2></div>
+    <div class="action-grid">
+      <button class="action-tile" id="closeDupes">
+        <span class="tile-icon">🗂</span>
+        <span class="tile-label">Dedupe Tabs</span>
+      </button>
+      <button class="action-tile" id="toggleDark">
+        <span class="tile-icon">🌓</span>
+        <span class="tile-label">Dark Page</span>
+      </button>
+      <button class="action-tile" id="focusMode">
+        <span class="tile-icon">🎯</span>
+        <span class="tile-label">Focus Mode</span>
+      </button>
+    </div>
+  </section>
+</body>
+<script src="popup.js"></script>
+</html>
