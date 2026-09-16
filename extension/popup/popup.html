@@ -1,81 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productivity Changer</title>
   <link rel="stylesheet" href="../styles/theme.css">
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <!-- Header -->
   <header class="header">
     <div class="brand">
       <span class="brand-icon">⚡</span>
-      <span class="brand-name">Productivity</span>
+      <div>
+        <div class="brand-name">Productivity Changer</div>
+        <div class="brand-subtitle">Stay focused. Work smarter.</div>
+      </div>
     </div>
     <div class="header-actions">
-      <button class="icon-btn" id="themeToggle" title="Toggle theme">🌙</button>
-      <button class="icon-btn" id="openOptions" title="Settings">⚙️</button>
+      <button class="icon-btn" id="themeToggle" title="Toggle popup theme" aria-label="Toggle popup theme">🌙</button>
+      <button class="icon-btn" id="openOptions" title="Open settings" aria-label="Open settings">⚙️</button>
     </div>
   </header>
 
-  <!-- Pomodoro -->
-  <section class="card timer-card">
-    <div class="timer-ring">
-      <svg viewBox="0 0 120 120">
-        <circle class="ring-bg" cx="60" cy="60" r="52"/>
-        <circle class="ring-progress" cx="60" cy="60" r="52" id="ringProgress"/>
-      </svg>
-      <div class="timer-content">
-        <div class="timer-time" id="timer">25:00</div>
-        <div class="timer-label" id="timerStatus">Focus</div>
+  <main>
+    <section class="card timer-card">
+      <div class="section-topline">
+        <div>
+          <div class="eyebrow">FOCUS TIMER</div>
+          <div class="section-title">Deep work session</div>
+        </div>
+        <span class="status-pill" id="timerStatus">Focus</span>
       </div>
-    </div>
-    <div class="timer-controls">
-      <button class="btn btn-primary" id="startTimer">▶ Start</button>
-      <button class="btn btn-ghost" id="resetTimer">↻</button>
-    </div>
-  </section>
 
-  <!-- Tasks -->
-  <section class="card">
-    <div class="card-header">
-      <h2>✦ Today's Tasks</h2>
-      <span class="badge" id="taskCount">0/0</span>
-    </div>
-    <ul class="task-list" id="taskList"></ul>
-    <div class="input-group">
-      <input id="taskInput" placeholder="Add a task..." autocomplete="off">
-      <button class="btn btn-icon-primary" id="addTask">+</button>
-    </div>
-  </section>
+      <div class="timer-ring">
+        <svg viewBox="0 0 120 120" aria-hidden="true">
+          <circle class="ring-bg" cx="60" cy="60" r="52"/>
+          <circle class="ring-progress" cx="60" cy="60" r="52" id="ringProgress"/>
+        </svg>
+        <div class="timer-content">
+          <div class="timer-time" id="timer">25:00</div>
+          <div class="timer-label">FOCUS</div>
+        </div>
+      </div>
 
-  <!-- Notes -->
-  <section class="card">
-    <div class="card-header">
-      <h2>✎ Quick Note</h2>
-      <span class="note-status" id="noteStatus"></span>
-    </div>
-    <textarea id="notes" placeholder="Jot something down..."></textarea>
-  </section>
+      <div class="timer-controls">
+        <button class="btn btn-primary" id="startTimer">▶ Start</button>
+        <button class="btn btn-ghost" id="resetTimer" title="Reset timer" aria-label="Reset timer">↻</button>
+      </div>
+    </section>
 
-  <!-- Quick Actions -->
-  <section class="card actions-card">
-    <div class="card-header"><h2>⚡ Quick Actions</h2></div>
-    <div class="action-grid">
-      <button class="action-tile" id="closeDupes">
-        <span class="tile-icon">🗂</span>
-        <span class="tile-label">Dedupe Tabs</span>
-      </button>
-      <button class="action-tile" id="toggleDark">
-        <span class="tile-icon">🌓</span>
-        <span class="tile-label">Dark Page</span>
-      </button>
-      <button class="action-tile" id="focusMode">
-        <span class="tile-icon">🎯</span>
-        <span class="tile-label">Focus Mode</span>
-      </button>
-    </div>
-  </section>
+    <section class="card">
+      <div class="card-header">
+        <div>
+          <div class="eyebrow">TODAY</div>
+          <h2>Tasks</h2>
+        </div>
+        <span class="badge" id="taskCount">0/0</span>
+      </div>
+      <ul class="task-list" id="taskList"></ul>
+      <div class="input-group">
+        <input id="taskInput" type="text" placeholder="What needs to get done?" autocomplete="off" maxlength="200">
+        <button class="btn btn-icon-primary" id="addTask" title="Add task" aria-label="Add task">+</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-header">
+        <div>
+          <div class="eyebrow">SCRATCHPAD</div>
+          <h2>Quick Note</h2>
+        </div>
+        <span class="note-status" id="noteStatus">Saved locally</span>
+      </div>
+      <textarea id="notes" placeholder="Write a thought, idea, or reminder..."></textarea>
+    </section>
+
+    <section class="card actions-card">
+      <div class="card-header">
+        <div>
+          <div class="eyebrow">TOOLS</div>
+          <h2>Quick Actions</h2>
+        </div>
+      </div>
+      <div class="action-grid">
+        <button class="action-tile" id="closeDupes">
+          <span class="tile-icon">🗂</span>
+          <span class="tile-label">Dedupe Tabs</span>
+          <span class="tile-hint">Clean duplicates</span>
+        </button>
+        <button class="action-tile" id="toggleDark">
+          <span class="tile-icon">🌓</span>
+          <span class="tile-label">Dark Page</span>
+          <span class="tile-hint">Toggle current page</span>
+        </button>
+        <button class="action-tile" id="focusMode">
+          <span class="tile-icon">🎯</span>
+          <span class="tile-label">Focus Mode</span>
+          <span class="tile-hint">Start focused work</span>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Productivity Changer</span>
+    <span>Local &amp; lightweight</span>
+  </footer>
+
+  <script src="popup.js"></script>
 </body>
-<script src="popup.js"></script>
 </html>
