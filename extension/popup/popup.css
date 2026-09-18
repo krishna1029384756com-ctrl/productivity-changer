@@ -224,3 +224,12 @@ textarea { min-height: 72px; resize: vertical; line-height: 1.5; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+.developer-card { background-image: linear-gradient(135deg, var(--bg-1), color-mix(in srgb, var(--accent) 7%, var(--bg-1))); }
+.dev-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.dev-tile { min-width: 0; min-height: 68px; padding: 9px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-2); color: var(--text-0); cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; transition: all var(--duration) var(--ease); font-family: inherit; }
+.dev-tile:hover { background: var(--bg-3); border-color: color-mix(in srgb, var(--accent) 60%, var(--border)); transform: translateY(-2px); }
+.dev-tile:active { transform: translateY(0); }
+.dev-tile .tile-label { color: var(--text-1); font-size: 10px; font-weight: 750; text-align: center; }
+.dev-tile:hover .tile-label { color: var(--text-0); }
+.dev-tile .tile-hint { color: var(--text-2); font-size: 8px; text-align: center; }
