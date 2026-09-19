@@ -195,18 +195,20 @@ body {
   margin-top: 4px;
 }
 
-/* Switch */
+/* Switch (Focus toggle) – fixed */
 .switch {
   position: relative;
   display: inline-block;
-  width: 44px;
-  height: 24px;
+  width: 46px;
+  height: 26px;
+  flex-shrink: 0;
 }
 
 .switch input {
   opacity: 0;
   width: 0;
   height: 0;
+  position: absolute;
 }
 
 .slider {
@@ -216,19 +218,21 @@ body {
   background: var(--bg-hover);
   border: 1px solid var(--border);
   border-radius: 999px;
-  transition: background 0.15s ease, border-color 0.15s ease;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  display: block;
 }
 
 .slider:before {
   position: absolute;
   content: "";
-  height: 16px;
-  width: 16px;
+  height: 18px;
+  width: 18px;
   left: 3px;
   bottom: 3px;
   background: var(--text-muted);
   border-radius: 50%;
-  transition: transform 0.15s ease, background 0.15s ease;
+  transition: transform 0.2s ease, background 0.2s ease;
+  display: block;
 }
 
 .switch input:checked + .slider {
@@ -362,6 +366,13 @@ body {
   flex: 1;
   font-size: 12px;
   color: var(--text-primary);
+}
+
+.task-checkbox {
+  accent-color: var(--accent);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
 }
 
 .task-delete {
