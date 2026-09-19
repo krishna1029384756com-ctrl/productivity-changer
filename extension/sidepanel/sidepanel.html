@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Productivity Changer</title>
+  <link rel="stylesheet" href="../styles/theme.css" />
+  <link rel="stylesheet" href="sidepanel.css" />
+</head>
+<body>
+  <div class="pc-root pc-sidepanel">
+    <!-- Header -->
+    <div class="pc-header">
+      <div>
+        <div class="pc-title">Productivity Changer</div>
+        <div class="pc-subtitle">Minimal focus sidebar</div>
+      </div>
+    </div>
+
+    <!-- Focus -->
+    <div class="pc-section">
+      <div class="pc-section-title">Focus</div>
+      <div class="pc-card">
+        <div class="pc-card-row">
+          <div class="pc-label">Focus Mode</div>
+          <label class="pc-switch">
+            <input type="checkbox" id="pc-focus-toggle" />
+            <span class="pc-switch-slider"></span>
+          </label>
+        </div>
+        <div class="pc-hint">Enables blocker + dark mode together</div>
+      </div>
+    </div>
+
+    <!-- Block -->
+    <div class="pc-section">
+      <div class="pc-section-title">Block</div>
+      <div class="pc-card">
+        <div class="pc-card-row">
+          <div class="pc-label">Blocker settings</div>
+          <button id="pc-open-blocker" class="pc-btn pc-btn-primary">
+            Open
+          </button>
+        </div>
+        <div class="pc-hint">Opens your blocker dashboard (Netlify)</div>
+      </div>
+    </div>
+
+    <!-- Timer -->
+    <div class="pc-section">
+      <div class="pc-section-title">Timer</div>
+      <div class="pc-card">
+        <div class="pc-timer" id="pc-timer-display">25:00</div>
+        <div class="pc-timer-hint">Pomodoro (25 min)</div>
+        <div class="pc-actions">
+          <button id="pc-timer-start" class="pc-btn pc-btn-primary">Start</button>
+          <button id="pc-timer-reset" class="pc-btn">Reset</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tasks -->
+    <div class="pc-section">
+      <div class="pc-section-title">Tasks</div>
+      <div class="pc-card">
+        <input
+          id="pc-task-input"
+          class="pc-input"
+          type="text"
+          placeholder="Add a task..."
+        />
+        <div id="pc-task-list" style="margin-top:8px;"></div>
+      </div>
+    </div>
+
+    <!-- Notes -->
+    <div class="pc-section">
+      <div class="pc-section-title">Notes</div>
+      <div class="pc-card">
+        <textarea
+          id="pc-notes"
+          class="pc-textarea"
+          placeholder="Quick notes..."
+        ></textarea>
+        <div class="pc-hint">Auto-saves locally</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="pc-footer">
+      <span>Personal build</span>
+      <span class="pc-badge">v0.1</span>
+    </div>
+  </div>
+
+  <script src="sidepanel.js"></script>
+</body>
+</html>

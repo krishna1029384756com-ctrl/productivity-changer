@@ -1,0 +1,96 @@
+/* Side panel – minimal, Opera-like */
+
+.pc-sidepanel {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-base);
+  overflow-y: auto;
+}
+
+/* Compact header */
+.pc-sidepanel .pc-header {
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Sections */
+.pc-sidepanel .pc-section {
+  margin-bottom: 12px;
+}
+
+.pc-sidepanel .pc-section-title {
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 6px;
+}
+
+/* Timer */
+.pc-sidepanel .pc-timer {
+  font-size: 24px;
+  font-weight: 800;
+  text-align: center;
+  padding: 8px 0;
+  color: var(--text-primary);
+}
+
+.pc-sidepanel .pc-timer-hint {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* Tasks list */
+#pc-task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pc-task-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.pc-task-text {
+  flex: 1;
+  color: var(--text-primary);
+}
+
+.pc-task-done .pc-task-text {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.pc-task-delete {
+  background: transparent;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.pc-task-delete:hover {
+  background: rgba(255, 107, 107, 0.15);
+}
+
+/* Footer */
+.pc-sidepanel .pc-footer {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-muted);
+}
