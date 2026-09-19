@@ -1,59 +1,45 @@
-// Side panel logic – minimal, personal
+// Productivity Changer – Side Panel (Full Logic)
 
 (function () {
-  const focusToggle = document.getElementById('pc-focus-toggle');
-  const openBlockerBtn = document.getElementById('pc-open-blocker');
-  const timerDisplay = document.getElementById('pc-timer-display');
-  const timerStartBtn = document.getElementById('pc-timer-start');
-  const timerResetBtn = document.getElementById('pc-timer-reset');
-  const taskInput = document.getElementById('pc-task-input');
-  const taskList = document.getElementById('pc-task-list');
-  const notesArea = document.getElementById('pc-notes');
+  // Navigation
+  const navBtns = document.querySelectorAll('.nav-btn');
+  const views = document.querySelectorAll('.view');
 
-  let timerInterval = null;
-  let timeLeft = 25 * 60; // seconds
-  let running = false;
+  function showView(name) {
+    navBtns.forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.view === name);
+    });
+    views.forEach(view => {
+      view.classList.toggle('active', view.id === `view-${name}`);
+    });
+  }
 
-  // Placeholder for your Netlify blocker domain
-  const BLOCKER_URL = 'https://YOUR_BLOCKER_DOMAIN.netlify.app';
-
-  // Load saved state
-  chrome.storage.local.get(
-    ['focusMode', 'tasks', 'notes', 'timerSeconds', 'timerRunning'],
-    (data) => {
-      if (typeof data.focusMode === 'boolean') {
-        focusToggle.checked = data.focusMode;
-      }
-      if (Array.isArray(data.tasks)) {
-        renderTasks(data.tasks);
-      }
-      if (typeof data.notes === 'string') {
-        notesArea.value = data.notes;
-      }
-      if (typeof data.timerSeconds === 'number') {
-        timeLeft = data.timerSeconds;
-        updateTimerDisplay();
-      }
-      if (data.timerRunning) {
-        running = true;
-        timerStartBtn.textContent = 'Pause';
-        startTimer();
-      }
-    }
-  );
-
-  // Focus toggle
-  focusToggle.addEventListener('change', () => {
-    const enabled = focusToggle.checked;
-    chrome.storage.local.set({ focusMode: enabled });
+  navBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      showView(btn.dataset.view);
+    });
   });
 
-  // Open blocker dashboard
-  openBlockerBtn.addEventListener('click', () => {
-    chrome.tabs.create({ url: BLOCKER_URL });
+  // Focus toggle
+  const focusToggle = document.getElementById('focus-toggle');
+  chrome.storage.local.get(['focusMode'], (data) => {
+    if (typeof data.focusMode === 'boolean') {
+      focusToggle.checked = data.focusMode;
+    }
+  });
+  focusToggle.addEventListener('change', () => {
+    chrome.storage.local.set({ focusMode: focusToggle.checked });
   });
 
   // Timer
+  const timerDisplay = document.getElementById('timer-display');
+  const timerStartBtn = document.getElementById('timer-start');
+  const timerResetBtn = document.getElementById('timer-reset');
+
+  let timerInterval = null;
+  let timeLeft = 25 * 60;
+  let running = false;
+
   function updateTimerDisplay() {
     const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
     const s = (timeLeft % 60).toString().padStart(2, '0');
@@ -97,7 +83,22 @@
     chrome.storage.local.set({ timerSeconds: timeLeft, timerRunning: false });
   });
 
+  chrome.storage.local.get(['timerSeconds', 'timerRunning'], (data) => {
+    if (typeof data.timerSeconds === 'number') {
+      timeLeft = data.timerSeconds;
+      updateTimerDisplay();
+    }
+    if (data.timerRunning) {
+      running = true;
+      timerStartBtn.textContent = 'Pause';
+      startTimer();
+    }
+  });
+
   // Tasks
+  const taskInput = document.getElementById('task-input');
+  const taskList = document.getElementById('task-list');
+
   function saveTasks(tasks) {
     chrome.storage.local.set({ tasks });
   }
@@ -106,7 +107,7 @@
     taskList.innerHTML = '';
     tasks.forEach((task, idx) => {
       const row = document.createElement('div');
-      row.className = 'pc-task-item' + (task.done ? ' pc-task-done' : '');
+      row.className = 'task-item' + (task.done ? ' done' : '');
 
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
@@ -118,11 +119,11 @@
       });
 
       const text = document.createElement('div');
-      text.className = 'pc-task-text';
+      text.className = 'task-text';
       text.textContent = task.text;
 
       const del = document.createElement('button');
-      del.className = 'pc-task-delete';
+      del.className = 'task-delete';
       del.textContent = '🗑';
       del.title = 'Delete';
       del.addEventListener('click', () => {
@@ -151,12 +152,34 @@
     }
   });
 
-  // Notes auto-save
+  chrome.storage.local.get(['tasks'], (data) => {
+    if (Array.isArray(data.tasks)) {
+      renderTasks(data.tasks);
+    }
+  });
+
+  // Notes
+  const notesArea = document.getElementById('notes-area');
   let notesSaveTimeout = null;
+
   notesArea.addEventListener('input', () => {
     clearTimeout(notesSaveTimeout);
     notesSaveTimeout = setTimeout(() => {
       chrome.storage.local.set({ notes: notesArea.value });
     }, 400);
+  });
+
+  chrome.storage.local.get(['notes'], (data) => {
+    if (typeof data.notes === 'string') {
+      notesArea.value = data.notes;
+    }
+  });
+
+  // Block button
+  const openBlockerBtn = document.getElementById('open-blocker');
+  const BLOCKER_URL = 'https://YOUR_BLOCKER_DOMAIN.netlify.app';
+
+  openBlockerBtn.addEventListener('click', () => {
+    chrome.tabs.create({ url: BLOCKER_URL });
   });
 })();
