@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Productivity Changer",
-  "version": "0.1.0",
-  "description": "Personal productivity extension",
+  "version": "0.2.0",
+  "description": "Personal productivity extension with side panel",
   "permissions": [
     "storage",
     "tabs",
